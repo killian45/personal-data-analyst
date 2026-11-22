@@ -31,9 +31,9 @@ native speaker).
 
 ## Use it
 
-- **Web version:** the address will be given here once it is online.
-  Install it from your browser (Settings & Data → Install the app, in the
-  app, explains how). On iPhone and iPad, add it to the Home Screen.
+- **Web version:** https://personal-data-analyst.pages.dev — install it
+  from your browser (Settings & Data → Install the app, in the app,
+  explains how). On iPhone and iPad, add it to the Home Screen.
 - **Android app** (with Health Connect and screen time): a download will
   be given here.
 - **Sync:** Settings & Data → Sync → "How to set up your own server"
