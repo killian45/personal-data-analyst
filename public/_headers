@@ -1,0 +1,15 @@
+# Security headers for the public web version (sharing plan S6, finding A7).
+# Read by Cloudflare Pages, and by "npm run preview:public" to test locally.
+# The owner's local app (vite preview on port 5173) does not use this file.
+#
+# connect-src lists every server the app talks to: the person's own
+# Supabase project (*.supabase.co), YNAB (api.ynab.com, only when that
+# feature is on) and Ollama on the same computer (local AI, optional).
+# 'wasm-unsafe-eval' lets the browser run the bundled SQLite (WebAssembly)
+# used to read Health Connect exports. No third-party scripts, no frames.
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.ynab.com http://127.0.0.1:11434 http://localhost:11434; worker-src 'self'; manifest-src 'self'; frame-src 'none'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'none'
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Cross-Origin-Opener-Policy: same-origin

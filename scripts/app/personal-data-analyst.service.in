@@ -1,0 +1,15 @@
+# Personal Data Analyst — local app server (installed by scripts/app/install.sh).
+# Serves the finished app (dist/) at http://localhost:5173, the same address
+# as before, so the browser keeps the same data. Reachable only from this
+# computer. Update after code changes with: npm run app:update
+[Unit]
+Description=Personal Data Analyst (local app at http://localhost:5173)
+
+[Service]
+WorkingDirectory=@PROJECT_DIR@
+ExecStart=@NODE@ @PROJECT_DIR@/node_modules/vite/bin/vite.js preview --port 5173 --strictPort
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

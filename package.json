@@ -1,0 +1,77 @@
+{
+  "name": "personal-data-analyst",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5174 --strictPort",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "app:install": "sh scripts/app/install.sh",
+    "app:update": "npm run build && systemctl --user restart personal-data-analyst.service",
+    "app:uninstall": "sh scripts/app/uninstall.sh",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "typecheck": "tsc -b",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "build:public": "VITE_SUPABASE_URL= VITE_SUPABASE_ANON_KEY= vite build --outDir dist-public --emptyOutDir && node src/server/checkPublicBuild.node.ts dist-public",
+    "preview:public": "PDA_PUBLIC_PREVIEW=1 vite preview --outDir dist-public --port 4173 --strictPort",
+    "setup-sql": "node src/server/setupSql.node.ts",
+    "test:db": "DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock vitest run --config vitest.db.config.ts",
+    "db:start": "DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock supabase start",
+    "db:stop": "DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock supabase stop",
+    "db:status": "DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock supabase status",
+    "android:sync": "npm run build && cap sync android",
+    "android:build": "npm run android:sync && cd android && JAVA_HOME=$HOME/.jdks/jdk-21.0.13+9 ANDROID_HOME=$HOME/Android/Sdk ./gradlew assembleDebug",
+    "android:install": "npm run android:build && adb install -r android/app/build/outputs/apk/debug/app-debug.apk"
+  },
+  "dependencies": {
+    "@capacitor/android": "8.6.0",
+    "@capacitor/core": "8.6.0",
+    "@capacitor/filesystem": "8.1.5",
+    "@capacitor/share": "8.0.3",
+    "@date-fns/tz": "^1.5.0",
+    "@kiwi-health/capacitor-health-connect": "0.0.43",
+    "@supabase/supabase-js": "^2.119.0",
+    "date-fns": "^4.4.0",
+    "dexie": "^4.4.7",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "recharts": "^3.10.1",
+    "sql.js": "^1.15.2",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.6.0",
+    "@tailwindcss/vite": "^4.3.5",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.8",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/sql.js": "^1.4.11",
+    "@vitejs/plugin-react": "^6.1.2",
+    "fake-indexeddb": "^6.2.7",
+    "jsdom": "^31.0.0",
+    "oxlint": "^1.90.0",
+    "supabase": "^3.1.0",
+    "tailwindcss": "^4.3.5",
+    "typescript": "~7.0.2",
+    "vite": "^8.3.6",
+    "vite-plugin-pwa": "^2.0.0",
+    "vitest": "^5.1.0"
+  },
+  "overrides": {
+    "workbox-build": {
+      "glob": "^14.0.4"
+    },
+    "glob": {
+      "minimatch": "^11.0.5"
+    },
+    "@kiwi-health/capacitor-health-connect": {
+      "@capacitor/core": "$@capacitor/core"
+    }
+  }
+}

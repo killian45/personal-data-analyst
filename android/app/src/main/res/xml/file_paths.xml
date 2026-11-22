@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Files the app may hand to other apps (Android share sheet): only the
+  backup / export / recovery-key files written to the app's private cache
+  folder "exports/" (see src/files/saveFile.ts). Nothing else is exposed.
+-->
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <cache-path name="exports" path="exports/" />
+</paths>

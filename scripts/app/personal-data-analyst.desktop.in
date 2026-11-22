@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Personal Data Analyst
+Comment=Sleep, habits, screen time and location — your data, on this computer
+Exec=@BROWSER@ http://localhost:5173
+Icon=@PROJECT_DIR@/public/icons/icon-192.png
+Terminal=false
+Categories=Utility;
+StartupNotify=true
